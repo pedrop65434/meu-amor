@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para meu amor ❤️</title>
+    <style>
+        body {
+            background-color: #ffeef2;
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        h1 { color: #d63384; margin-top: 30px; font-size: 1.8em; padding: 0 10px; }
+
+        /* Estilo Base dos Corações Caindo */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 20px;
+            user-select: none;
+            z-index: 1000;
+            animation: fall 3s linear forwards;
+            pointer-events: none; /* Não atrapalha o clique */
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) translateX(20px); opacity: 0; }
+        }
+
+        /* Galeria Polaroid */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: rotate(var(--r));
+            transition: 0.3s;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .polaroid p {
+            margin: 10px 0 0;
+            font-size: 0.8em;
+            color: #555;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Jogo do Botão Arrumado */
+        .quiz-container {
+            margin: 40px 0;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 400px;
+            min-height: 250px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.1s;
+            z-index: 10;
+        }
+
+        #btnSim { 
+            background-color: #ff4d6d; 
+            color: white; 
+            font-weight: bold;
+        }
+
+        #btnNao {
+            background-color: #888;
+            color: white;
+            position: static; 
+        }
+
+        /* Mensagem Final Romântica e Atualizada */
+        #mensagemFinal {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.98); /* Fundo quase todo branco */
+            z-index: 2000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        #mensagemFinal h2 { 
+            color: #d63384; 
+            font-size: 2.2em; 
+            margin-bottom: 15px; 
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        #mensagemFinal p { 
+            font-size: 1.3em; 
+            color: #333; 
+            margin-bottom: 40px; 
+            line-height: 1.5;
+            max-width: 350px;
+        }
+
+        /* Container para a explosão de corações */
+        #explosionContainer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 2001; /* Fica na frente do texto da mensagem */
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Para a pessoa mais especial do mundo ❤️</h1>
+
+    <div class="gallery">
+        <div class="polaroid" style="--r: -3deg">
+            <img src="foto1.jpg" alt="Nós dois">
+            <p>Nosso rolê favorito! ❤️</p>
+        </div>
+        <div class="polaroid" style="--r: 2deg">
+            <img src="foto2.jpg" alt="Você linda">
+            <p>Você brilha mais que o sol! 🌹</p>
+        </div>
+        <div class="polaroid" style="--r: -2deg">
+            <img src="foto3.jpg" alt="Selfie">
+            <p>Cada segundo com você é único...</p>
+        </div>
+        <div class="polaroid" style="--r: 4deg">
+            <img src="foto4.jpg" alt="Amor">
+            <p>Meu lugar favorito é ao seu lado!</p>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quizBox">
+        <h3>Você me ama, meu amor? 😍</h3>
+        <div class="btns">
+            <button id="btnSim" onclick="ganhou()">SIM!</button>
+            <button id="btnNao" onmouseover="foge()" onclick="foge()">NÃO</button>
+        </div>
+    </div>
+
+    <div id="mensagemFinal">
+        <div id="explosionContainer"></div> <h2>Eu te amo muito também ❤️</h2>
+        <p>Ah, você é a melhor mulher, a melhor namorada e a melhor futura esposa que eu poderia ter.</p>
+        <button onclick="document.getElementById('mensagemFinal').style.display='none'" style="background:#ff4d6d; color:white; padding: 15px 35px; border:none; border-radius:30px; font-size:1.1em; font-weight:bold;">Te amo! ✨</button>
+    </div>
+
+    <script>
+        // 1. Chuva de corações constante ao fundo (suave)
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.color = '#ffb3c1'; // Coraçãozinho rosa claro
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 500); // Gera um a cada meio segundo
+
+        // 2. Função do botão fujão (Não mudou)
+        function foge() {
+            const btnNao = document.getElementById('btnNao');
+            const container = document.getElementById('quizBox');
+            btnNao.style.position = 'absolute';
+            const maxLargura = container.clientWidth - btnNao.clientWidth - 20;
+            const maxAltura = container.clientHeight - btnNao.clientHeight - 20;
+            const alturaMinima = 80;
+            const novoX = Math.max(10, Math.random() * maxLargura);
+            const novoY = Math.max(alturaMinima, Math.random() * maxAltura);
+            btnNao.style.left = novoX + 'px';
+            btnNao.style.top = novoY + 'px';
+        }
+
+        // 3. Função para a Explosão de Corações (Nova!)
+        function explosaoCoracoes() {
+            const container = document.getElementById('explosionContainer');
+            const tiposCorações = ['💖', '❤️', '💘', '💝', '🌸'];
+            
+            // Gera 40 corações rapidamente
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    // Escolhe um tipo de coração aleatório
+                    heart.innerText = tiposCorações[Math.floor(Math.random() * tiposCorações.length)];
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '-5vh'; // Começa um pouco acima
+                    heart.style.fontSize = Math.random() * 15 + 20 + 'px'; // Tamanhos variados
+                    
+                    // Caem bem mais rápido (1 a 2 segundos)
+                    heart.style.animationDuration = Math.random() * 1 + 1 + 's'; 
+                    
+                    container.appendChild(heart);
+                    // Remove depois que cair
+                    setTimeout(() => heart.remove(), 2000);
+                }, i * 50); // Cria um novo coração a cada 50 milissegundos
+            }
+        }
+
+        // 4. Quando ela conseguir clicar no SIM
+        function ganhou() {
+            // Mostra a tela da mensagem
+            document.getElementById('mensagemFinal').style.display = 'flex';
+            // Dispara a explosão de corações comemorativa
+            explosaoCoracoes();
+        }
+    </script>
+</body>
+</html>
